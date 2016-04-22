@@ -82,11 +82,6 @@ Pour les applications hybrides, qui ont un environnement très différent des ap
 
 Pour les applications natives, en fonction de l'OS, les spécifications devront faire référence au guide ["Développer des applications accessibles avec les API Android et iOS"](https://github.com/DISIC/guide-mobile_app_dev_natif).
 
-### Note supplémentaire
-
-Si le support cible est une montre connectée sous <span lang="en">Android</span> ou sous <span lang="en">iOS</span>, il n'est pas possible de rendre l'application complètement accessible, car il n'y a pas de lecteur d'écran pour montre à l'heure actuelle. Une montre connectée est jumelée à un téléphone, il est important de fournir toutes les alternatives d'actions, de contenu via l'application mobile.
-Nous vous invitons néanmoins à suivre la philosophie du guide ci-dessous, pour spécifier l'interface de la montre.
-
 ## Avertissement
 
 Note : La liste des critères spécifiques aux plateformes mobiles/tactiles est une extension du référentiel RGAA 3. Elle n'a pas de caractère normatif du fait de l'hétérogénéité et de l'évolution des plateformes mobiles et du manque de référence normative WCAG. À ce titre, elle n'est pas insérée dans le référentiel lui-même mais proposée comme une simple ressource. Elle prend en charge uniquement les plateformes web, même si certains de ses critères peuvent être transposés sur un environnement applicatif. Dans ce document, elle est référencée comme la « thématique 14 », les critères sont numérotés 14.x
