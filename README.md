@@ -76,7 +76,7 @@ Elle peut être de plusieurs natures&nbsp;:
  * Application hybride (<span lang="en">Apple Store</span> ou <span lang="en">Google Play</span>)
  * Application web mobile (web)
 
-La cible étant définie, si la technologie est de nature <abbr title="Hypertext Markup Language">HTML</abbr>, les applications web mobiles et les applications hybrides devront suivre les [critères du <abbr title="Référentiel général d'accessibilité pour les administrations">RGAA</abbr> 3](https://github.com/DISIC/rgaa_referentiel) étendu par la [liste des critères spécifiques aux plateformes mobiles/tactiles](https://github.com/DISIC/referentiel-mobile-tactile/blob/master/refentiel-mobile-tactile-liste-criteres.md).
+La cible étant définie, si la technologie est de nature <abbr title="Hypertext Markup Language">HTML</abbr>, les applications web mobiles et les applications hybrides devront suivre les [critères du <abbr title="Référentiel général d'accessibilité pour les administrations">RGAA</abbr> 3](http://references.modernisation.gouv.fr/rgaa/criteres.html) étendu par la [liste des critères spécifiques aux plateformes mobiles/tactiles](https://github.com/DISIC/referentiel-mobile-tactile/blob/master/refentiel-mobile-tactile-liste-criteres.md).
 
 Pour les applications hybrides, qui ont un environnement très différent des applications web mobiles, nous vous invitons fortement à joindre dans les spécifications fonctionnelles le retour d'expérience sur les [frameworks hybrides](https://github.com/DISIC/guide-mobile_app_dev_hybride) Ionic et OnsenUI.
 
@@ -114,7 +114,7 @@ Sous <span lang="en">iOS</span> les deux principaux [types de navigation](https:
 
 Si le menu est suffisament simple, moins de 4 éléments, les <span lang="en">navigations Tabs</span> sous <span lang="en">iOS</span> ou <span lang="en">Tab Bar</span> sous <span lang="en">Android</span> seront adaptés. Lorsque le menu contient plus de 4 éléments, il est nécessaire de passer sur une navigation plus élaborée (exemple : <span lang="en">Navigation drawer</span> ou <span lang="en">Navigation Bar</span>). En effet la taille minimun d'une zone sensible doit être de 9mm, limitant à 4 items horizontaux sur certain mobile.
 
-Pour les applications web, il y a beaucoup plus de liberté pour créer le menu. Il est néanmoins nécessaire de respecter la thématique navigation du RGAA 3, notamment le [critère 12.2](http://references.modernisation.gouv.fr/referentiel-technique-0#title-critre-122-aa-dans-chaque-ensemble-de-pages-le-menu-ou-les-barres-de-navigation-sont-ils-toujours-la-mme-place-hors-cas-particuliers-) et le [critère 12.3](http://references.modernisation.gouv.fr/referentiel-technique-0#title-critre-123-aa-dans-chaque-ensemble-de-pages-le-menu-et-les-barres-de-navigation-ont-ils-une-prsentation-cohrente-hors-cas-particuliers-).
+Pour les applications web, il y a beaucoup plus de liberté pour créer le menu. Il est néanmoins nécessaire de respecter la thématique navigation du RGAA 3, notamment le [critère 12.2](http://references.modernisation.gouv.fr/rgaa/criteres.html#crit-12-2) et le [critère 12.3](http://references.modernisation.gouv.fr/rgaa/criteres.html#crit-12-3).
 
 À ce stade, il est important de respecter [les tailles](#tailles), [les marges](#marges) et [le contraste](#contraste) dans la maquette du menu. De plus, pour les applications hybrides et pour le web mobile, il est important de vérifier que le [<span lang="en">design pattern</span> <abbr title="Accessible Rich Internet Applications">Aria</abbr> est compatible avec le mobile](#compatibilit-des-designs-patterns-aria-avec-le-mobile). En effet l'utilisation du <span lang="en">pattern Menu</span> et <span lang="en">Menu Bar</span> n'est actuellement pas possible en mobile web.
 
@@ -132,8 +132,8 @@ Lors de la conception de la maquette mobile, il est important d'annoter les él�
 
 ##### Ressources
 
- * [Critère 3.1 [A] Dans chaque page Web, l'information ne doit pas être donnée uniquement par la couleur. Cette règle est-elle respectée ?](http://references.modernisation.gouv.fr/referentiel-technique-0#title-critre-31-a-dans-chaque-page-web-linformation-ne-doit-pas-tre-donne-uniquement-par-la-couleur-cette-rgle-est-elle-respecte-)
- * [Critère 3.2 [A] Dans chaque page Web, l'information ne doit pas être donnée uniquement par la couleur. Cette règle est-elle implémentée de façon pertinente ?](http://references.modernisation.gouv.fr/referentiel-technique-0#title-critre-32-a-dans-chaque-page-web-linformation-ne-doit-pas-tre-donne-uniquement-par-la-couleur-cette-rgle-est-elle-implmente-de-faon-pertinente-)
+ * [Critère 3.1 [A] Dans chaque page Web, l'information ne doit pas être donnée uniquement par la couleur. Cette règle est-elle respectée ?](http://references.modernisation.gouv.fr/rgaa/criteres.html#crit-3-1)
+ * [Critère 3.2 [A] Dans chaque page Web, l'information ne doit pas être donnée uniquement par la couleur. Cette règle est-elle implémentée de façon pertinente ?](http://references.modernisation.gouv.fr/rgaa/criteres.html#crit-3-2)
 
 
 #### Contraste
@@ -216,7 +216,7 @@ Il faut définir&nbsp;:
 
 ##### Ressource
 
-[Critère 7.1 [A] Chaque script est-il, si nécessaire, compatible avec les technologies d'assistance ?](http://references.modernisation.gouv.fr/referentiel-technique-0#title-critre-71-a-chaque-script-est-il-si-ncessaire-compatible-avec-les-technologies-dassistance-)
+[Critère 7.1 [A] Chaque script est-il, si nécessaire, compatible avec les technologies d'assistance ?](http://references.modernisation.gouv.fr/rgaa/criteres.html#crit-7-1)
 
 ### Formulaires
 
@@ -289,7 +289,7 @@ Pour choisir le <span lang="en">pattern Aria</span>, il est nécessaire de véri
 
 ### Simplification des contrastes mobile
 
-Le critère [3.3](http://references.modernisation.gouv.fr/referentiel-technique-0#title-critre-33-aa-dans-chaque-page-web-le-contraste-entre-la-couleur-du-texte-et-la-couleur-de-son-arrire-plan-est-il-suffisamment-lev-hors-cas-particuliers-) permet d'utiliser 2 types de contraste en fonction de la taille de police et de l'effet de graisse. En mobile, il y a pas vraiment d'équivalent en fonction de la densité de pixel, de l'OS… On peut donc simplifier en prenant un contraste d'au moins 4,5:1 pour l'ensemble des textes.
+Le critère [3.3](http://references.modernisation.gouv.fr/rgaa/criteres.html#crit-3-3) permet d'utiliser 2 types de contraste en fonction de la taille de police et de l'effet de graisse. En mobile, il y a pas vraiment d'équivalent en fonction de la densité de pixel, de l'OS… On peut donc simplifier en prenant un contraste d'au moins 4,5:1 pour l'ensemble des textes.
 
 ## Ressources et références
  * <a lang="en" href="https://www.google.com/design/spec/material-design/introduction.html">Material design</a>
