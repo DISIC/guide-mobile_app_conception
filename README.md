@@ -74,9 +74,9 @@ It can be of several types:
 
 If the target technology is <abbr title="Hypertext Markup Language">HTML</abbr>, mobile web apps and hybrid apps must follow the [<abbr lang="fr" title = "Référentiel général d'accessibilité pour les administrations">RGAA</abbr> 3](https://disic.github.io/rgaa_referentiel_en/criteria.html) criteria, extended by the [list of criteria specific to mobile / tactile platforms](https://github.com/DISIC/referentiel-mobile-tactile/blob/en/mobile-touch-guidelines-criteria.md).
 
-For hybrid apps, which have an environment very different from mobile web apps, we strongly advise you to consider our [feedback on the Ionic and OnsenUI hybrid frameworks](https://github.com/DISIC/guide-Mobile_app_dev_hybride) when editing the functional specifications.
+For hybrid apps, which have an environment very different from mobile web apps, we strongly advise you to consider our [feedback on the Ionic and OnsenUI hybrid frameworks](https://github.com/DISIC/guide-Mobile_app_dev_hybride/tree/english) when editing the functional specifications.
 
-For native apps, depending on the OS, the specifications should refer to our guide ["Accessible mobile app development guides with Android and iOS APIs"](https://github.com/DISIC/guide-mobile_app_dev_native).
+For native apps, depending on the OS, the specifications should refer to our guide ["Accessible mobile app development guides with Android and iOS APIs"](https://github.com/DISIC/guide-mobile_app_dev_native/tree/english).
 
 ## Warning
 
@@ -307,8 +307,8 @@ The [criterion 3.3](https://disic.github.io/rgaa_referentiel_en/criteria.html#cr
 The following guides can be consulted in addition:
 
 * [Mobile app audit guide](https://github.com/DISIC/guide-mobile_app_audit/tree/english)
-* [Accessible mobile app development guides with Android and iOS APIs](https://github.com/DISIC/guide-mobile_app_dev_natif)
-* [Accessible hybrid mobile app development guide with Ionic and OnsenUI](https://github.com/DISIC/guide-mobile_app_dev_hybride)
+* [Accessible mobile app development guides with Android and iOS APIs](https://github.com/DISIC/guide-mobile_app_dev_natif/tree/english)
+* [Accessible hybrid mobile app development guide with Ionic and OnsenUI](https://github.com/DISIC/guide-mobile_app_dev_hybride/tree/english)
 
 
 ## Licence
