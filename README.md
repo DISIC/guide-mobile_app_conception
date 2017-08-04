@@ -307,8 +307,8 @@ The [criterion 3.3](https://disic.github.io/rgaa_referentiel_en/criteria.html#cr
 The following guides can be consulted in addition:
 
 * [Mobile app audit guide](https://github.com/DISIC/guide-mobile_app_audit/tree/english)
-* [Accessible mobile app development guides with Android and iOS APIs](https://github.com/DISIC/guide-mobile_app_dev_natif)
-* [Accessible hybrid mobile app development guide with Ionic and OnsenUI](https://github.com/DISIC/guide-mobile_app_dev_hybride)
+* [Accessible mobile app development guides with Android and iOS APIs](https://github.com/DISIC/guide-mobile_app_dev_natif/tree/english)
+* [Accessible hybrid mobile app development guide with Ionic and OnsenUI](https://github.com/DISIC/guide-mobile_app_dev_hybride/tree/english)
 
 
 ## Licence
