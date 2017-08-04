@@ -1,314 +1,318 @@
-# Guide de conception d'applications mobiles accessibles
+# Design Guide for Accessible Mobile Apps
 
-## Sommaire
+## Table of contents
 
-  * [Sommaire](#sommaire)
-  * [À qui s'adresse ce guide&nbsp;?](#%C3%A0-qui-sadresse-ce-guide&nbsp)
-  * [Introduction](#introduction)
-  * [Définir la cible](#d%C3%A9finir-la-cible)
-    * [Note supplémentaire](#note-suppl%C3%A9mentaire)
-  * [Avertissement](#avertissement)
-  * [Recommandations](#recommandations)
-    * [Système de navigation](#syst%C3%A8me-de-navigation)
-    * [Design](#design)
-      * [Information donnée par la couleur](#information-donn%C3%A9e-par-la-couleur)
-        * [Ressources](#ressources)
-      * [Contraste](#contraste)
-        * [Ressources](#ressources-1)
-      * [Tailles](#tailles)
-        * [Ressources](#ressources-2)
-      * [Marges](#marges)
-        * [Ressource](#ressource)
-      * [Orientation](#orientation)
-        * [Ressource](#ressource-1)
-    * [Décrire les éléments d'interface](#d%C3%A9crire-les-%C3%A9l%C3%A9ments-dinterface)
-    * [Composants riches](#composants-riches)
-        * [Ressource](#ressource-2)
-    * [Formulaires](#formulaires)
-      * [Les étiquettes de champ de formulaire](#les-%C3%A9tiquettes-de-champ-de-formulaire)
-      * [Les types de champs de saisie](#les-types-de-champs-de-saisie)
-      * [Ressource](#ressource-3)
-    * [Capteur et alternative](#capteur-et-alternative)
-    * [Geste et alternative](#geste-et-alternative)
-      * [Ressources](#ressources-3)
-  * [Notes techniques](#notes-techniques)
-    * [Compatibilité des design patterns Aria avec le mobile](#compatibilit%C3%A9-des-design-patterns-aria-avec-le-mobile)
-    * [Simplification des contrastes mobile](#simplification-des-contrastes-mobile)
-  * [Ressources et références](#ressources-et-r%C3%A9f%C3%A9rences)
-  * [Guides connexes](#guides-connexes)
-  * [Licence](#licence)
+<!-- MarkdownTOC depth="3" -->
+
+- [Who is this guide for?](#who-is-this-guide-for)
+- [Introduction](#introduction)
+- [Choose the target technology](#choose-the-target-technology)
+- [Warning](#warning)
+- [Recommendations](#recommendations)
+  - [Navigation system](#navigation-system)
+  - [Design](#design)
+    - [Information conveyed through color](#information-conveyed-through-color)
+    - [Contrast](#contrast)
+    - [Sizes](#sizes)
+    - [Spacing](#spacing)
+    - [Orientation](#orientation)
+  - [Describe interface elements](#describe-interface-elements)
+  - [Rich interface components](#rich-interface-components)
+  - [Forms](#forms)
+    - [Form Field Labels](#form-field-labels)
+    - [Types of input fields](#types-of-input-fields)
+    - [Resource](#resource)
+  - [Sensor and alternative](#sensor-and-alternative)
+  - [Gesture and alternative](#gesture-and-alternative)
+    - [Resources](#resources)
+- [Technical Notes](#technical-notes)
+  - [Compatibility of ARIA design patterns with mobile platforms](#compatibility-of-aria-design-patterns-with-mobile-platforms)
+  - [Simplification of the contrast criteria on mobile devices](#simplification-of-the-contrast-criteria-on-mobile-devices)
+- [Resources and References](#resources-and-references)
+- [Related documents](#related-documents)
+- [Licence](#licence)
+
+<!-- /MarkdownTOC -->
 
 
-## À qui s'adresse ce guide&nbsp;?
+## Who is this guide for?
 
-Ce guide présente les étapes à effectuer pour créer une application mobile accessible.
-Le but est de définir les spécifications fonctionnelles avec les <span lang="en">zonings</span>, de définir l'ergonomie et la navigation dans l'application et de créer les maquettes pour fournir au développeur tous les éléments nécessaires à la création d'une application accessible.
+This guide describes steps of the design process of an accessible mobile app.
+The aim is to define the functional specifications with wireframes, to define the ergonomics and navigation in the app, and to create the templates to provide the developer with all the elements necessary to creating an accessible app.
 
-Il s'adresse&nbsp;:
- - aux chefs de projets&nbsp;;
- - aux graphistes&nbsp;;
- - aux concepteurs en charge de la rédaction de spécifications techniques.
+It is intended for:
+ - project managers;
+ - graphic designers;
+ - designers responsible for drafting technical specifications.
 
 
 
 ## Introduction
 
-Pour créer une application mobile accessible, il est important de prendre en compte l'accessibilité dès le début de la conception de l'application.
-Le contenu, le design et la navigation dans l'application doivent suivre certaines règles pour être accessibles au plus grand nombre d'utilisateurs quels que soient leurs handicaps.
+To create an accessible mobile app, it is important to consider accessibility from the start of the project.
+Content, design and navigation in the app must follow certain rules to be accessible to the greatest number of users, regardless of their disabilities.
 
-Certains principes impactent directement les phases de <span lang="en">zoning</span> et la maquette de l'application, notamment concernant la couleur, la taille et les formulaires.
+Some principles directly impact the wireframing phases and the app layout, including color, sizes, and forms.
 
-L'accessibilité est aussi confrontée aux lignes directrices des <abbr title="Operating System">OS</abbr> ciblés par l'application. En effet, pour ne pas perdre l'utilisateur et faciliter la compréhension et la navigation dans l'application, il est nécessaire de suivre ces lignes directrices. D'autant plus pour les applications <span lang="en">iOS</span> natives où <span lang="en">Apple</span> peut rejeter l'application du <span lang="en">store</span> si elles ne suivent pas les lignes directrices, notamment la 10.6 qui est dans le top 3 des causes de rejet par l'<span lang="en">Apple store</span>.
+Accessibility is also confronted with the targeted <abbr title = "Operating System">OS</abbr> guidelines. Indeed, in order to help the user understand and browse the app, it is necessary to follow these guidelines. Especially for iOS apps, since Apple can reject the app from store if it does not follow the guidelines, as stated in Apple's Common App Rejections page:
 
-> 10.6 <span lang="en">Apple</span> et nos clients accordent beaucoup d’importance aux interfaces à haute valeur ajoutée, simples, raffinées, créatives et bien pensées. Ces dernières réclament plus de travail mais le valent vraiment. <span lang="en">Apple</span> place la barre haut. Si votre interface est trop complexe ou n’atteint le niveau d’excellence attendu, elle sera rejetée.
+> Apple places a high value on clean, refined, and user-friendly interfaces. Make sure your UI meets these requirements by planning your design carefully and following our design guides and UI Design Dos and Don'ts.
 
-Nous verrons comment suivre les lignes directrices tout en rendant l'application accessible.
-
-
-
-## Définir la cible
-
-Avant de commencer, il est important de définir l'environnement cible de l'application.
-
-Elle peut être de plusieurs natures&nbsp;:
- * Application <span lang="en">Android</span> native (<span lang="en">Google Play</span>)
- * Application <span lang="en">iOS</span> native (<span lang="en">Apple Store</span>)
- * Application hybride (<span lang="en">Apple Store</span> ou <span lang="en">Google Play</span>)
- * Application web mobile (web)
-
-La cible étant définie, si la technologie est de nature <abbr title="Hypertext Markup Language">HTML</abbr>, les applications web mobiles et les applications hybrides devront suivre les [critères du <abbr title="Référentiel général d'accessibilité pour les administrations">RGAA</abbr> 3](http://references.modernisation.gouv.fr/rgaa/criteres.html) étendu par la [liste des critères spécifiques aux plateformes mobiles/tactiles](https://github.com/DISIC/referentiel-mobile-tactile/blob/master/refentiel-mobile-tactile-liste-criteres.md).
-
-Pour les applications hybrides, qui ont un environnement très différent des applications web mobiles, nous vous invitons fortement à joindre dans les spécifications fonctionnelles le retour d'expérience sur les [frameworks hybrides](https://github.com/DISIC/guide-mobile_app_dev_hybride) Ionic et OnsenUI.
-
-Pour les applications natives, en fonction de l'OS, les spécifications devront faire référence au guide ["Développer des applications accessibles avec les API Android et iOS"](https://github.com/DISIC/guide-mobile_app_dev_natif).
-
-## Avertissement
-
-Note : La liste des critères spécifiques aux plateformes mobiles/tactiles est une extension du référentiel RGAA 3. Elle n'a pas de caractère normatif du fait de l'hétérogénéité et de l'évolution des plateformes mobiles et du manque de référence normative WCAG. À ce titre, elle n'est pas insérée dans le référentiel lui-même mais proposée comme une simple ressource. Elle prend en charge uniquement les plateformes web, même si certains de ses critères peuvent être transposés sur un environnement applicatif. Dans ce document, elle est référencée comme la « thématique 14 », les critères sont numérotés 14.x
-
-## Recommandations
-
-### Système de navigation
-
-Dans un premier temps, il est important de faire en sorte que la navigation soit intuitive pour tout les utilisateurs. La navigation doit être constituée de tâches simples avec un minimum d'étapes. La navigation sera bénéfique pour tous les utilisateurs.
-
-Pour définir votre navigation sur <span lang="en">Android</span> et <span lang="en">iOS</span> vous pouvez suivre les [lignes directrices de Google](https://www.google.com/design/spec/patterns/navigation.html#navigation-defining-your-navigation) qui s'appliquent aussi bien à l'un ou l'autre des OS.
-Lorsque la navigation sera définie, vous pouvez choisir le <span lang="en">pattern</span> le plus adapté à votre navigation.
-
-Sous <span lang="en">Android</span> vous avez le choix entre plusieurs [types de navigation](https://www.google.com/design/spec/patterns/navigation.html#navigation-patterns)&nbsp;:
- * <span lang="en">Tabs</span>
- * <span lang="en">Navigation drawer</span>
- * <span lang="en">Nested Navigation</span>
- * <span lang="en">Expanding navigation drawer</span>
- * <span lang="en">Gestural</span>
+We will see how to follow the guidelines while making the app accessible.
 
 
-Sous <span lang="en">iOS</span> les deux principaux [types de navigation](https://developer.apple.com/library/ios/documentation/UserExperience/Conceptual/MobileHIG/Navigation.html) sont&nbsp;:
- * <span lang="en">Navigation Bar</span>
- * <span lang="en">Tab Bar</span>
 
-Si le menu est suffisament simple, moins de 4 éléments, les <span lang="en">navigations Tabs</span> sous <span lang="en">iOS</span> ou <span lang="en">Tab Bar</span> sous <span lang="en">Android</span> seront adaptés. Lorsque le menu contient plus de 4 éléments, il est nécessaire de passer sur une navigation plus élaborée (exemple : <span lang="en">Navigation drawer</span> ou <span lang="en">Navigation Bar</span>). En effet la taille minimun d'une zone sensible doit être de 9mm, limitant à 4 items horizontaux sur certain mobile.
+## Choose the target technology
 
-Pour les applications web, il y a beaucoup plus de liberté pour créer le menu. Il est néanmoins nécessaire de respecter la thématique navigation du RGAA 3, notamment le [critère 12.2](http://references.modernisation.gouv.fr/rgaa/criteres.html#crit-12-2) et le [critère 12.3](http://references.modernisation.gouv.fr/rgaa/criteres.html#crit-12-3).
+Before you start, it is important to define the target environment for the app.
 
-À ce stade, il est important de respecter [les tailles](#tailles), [les marges](#marges) et [le contraste](#contraste) dans la maquette du menu. De plus, pour les applications hybrides et pour le web mobile, il est important de vérifier que le [<span lang="en">design pattern</span> <abbr title="Accessible Rich Internet Applications">Aria</abbr> est compatible avec le mobile](#compatibilit-des-designs-patterns-aria-avec-le-mobile). En effet l'utilisation du <span lang="en">pattern Menu</span> et <span lang="en">Menu Bar</span> n'est actuellement pas possible en mobile web.
+It can be of several types:
+ * native Android app (Google Play)
+ * native iOS app (Apple Store)
+ * hybrid app (Apple Store or Google Play)
+ * mobile web app
+
+If the target technology is <abbr title="Hypertext Markup Language">HTML</abbr>, mobile web apps and hybrid apps must follow the [<abbr lang="fr" title = "Référentiel général d'accessibilité pour les administrations">RGAA</abbr> 3](https://disic.github.io/rgaa_referentiel_en/criteria.html) criteria, extended by the [list of criteria specific to mobile / tactile platforms](https://github.com/DISIC/referentiel-mobile-tactile/blob/en/mobile-touch-guidelines-criteria.md).
+
+For hybrid apps, which have an environment very different from mobile web apps, we strongly advise you to consider our [feedback on the Ionic and OnsenUI hybrid frameworks](https://github.com/DISIC/guide-Mobile_app_dev_hybride) when editing the functional specifications.
+
+For native apps, depending on the OS, the specifications should refer to our guide ["Accessible mobile app development guides with Android and iOS APIs"](https://github.com/DISIC/guide-mobile_app_dev_native).
+
+## Warning
+
+Note: The list of criteria specific to mobile/tactile platforms is an extension of the RGAA 3 reference list. At the time of writing, it is not normative because of the heterogeneity and evolution of the mobile platforms and the lack of WCAG normative reference. As such, it is not an integral part of the reference document itself, but proposed as an auxiliary resource. It supports only web platforms, although some of its criteria can be transposed into an app environment. In this document, it is referred to as "Category 14", the criteria are numbered 14.x.
+
+## Recommendations
+
+### Navigation system
+
+First, it is important to ensure that navigation is intuitive for all users. The navigation should consist of simple tasks with a minimum of steps. Such navigation will be beneficial to all users.
+
+To define your navigation for Android and iOS you can follow [Google guidelines](https://material.io/guidelines/patterns/navigation.html#navigation-patterns) that apply to both OS.
+When navigation is defined, you can choose the pattern that best suits your app.
+
+Under  Android you can choose between several [navigation patterns](https://material.io/guidelines/patterns/navigation.html#navigation-patterns):
+
+ *  Embedded navigation
+ *  Tabs
+ *  Bottom navigation bar
+ *  Navigation drawer
+ *  Nested Navigation
+ *  Expanding navigation drawer
+ *  Gestural
+
+
+The two main [navigation patterns on iOS](https://developer.apple.com/ios/human-interface-guidelines/ui-bars/navigation-bars/) are:
+
+ *  Navigation Bar
+ *  Tab Bar
+
+If the menu is simple enough, comprising less than 4 items, Tabs  will be adapted. When the menu contains more than 4 items, it is necessary to switch to a more elaborate navigation (example:  Navigation drawer or  Navigation Bar). Indeed, the minimum size of a touch target must be 9 mm, limiting room to 4 horizontal items on some devices.
+
+For web apps, there is much more freedom to create the menu. However, it is necessary to follow criteria of the navigation category of the RGAA 3, in particular [criterion 12.2](https://disic.github.io/rgaa_referentiel_en/criteria.html#crit-12-2) and [criterion 12.3](https://disic.github.io/rgaa_referentiel_en/criteria.html#crit-12-3).
+
+At this point, it is important to follow recommendations on [sizes](#sizes), [spacing](#spacing) and [contrast](#contrast) in the menu design. In addition, for hybrid apps and mobile web apps, it is important to verify that the <abbr title="Accessible Rich Internet Applications">ARIA</abbr> design patterns are [compatible with mobile platforms](#compatibility-of-aria-design-patterns-with-mobile-platforms). In fact, at the time of writing, there are known issues regarding the support of ARIA design patterns by assistive tools on mobile platforms.
 
 ### Design
 
-#### Information donnée par la couleur
+#### Information conveyed through color
 
-Il est important de ne pas donner l'information uniquement par la couleur. Dans les exemples ci-dessous, il sera important d'ajouter une alternative textuelle à l'indication donnée par la couleur&nbsp;:
- * La saisie obligatoire des champs dans un formulaire lorsqu'ils sont en rouge
- * La page en cours de consultation dans un menu (couleur de fond de l'élément différente du menu)
- * L'indisponibilité d'un article indiquée par la couleur du texte
- * …
+Information must not be provided through color only. In the examples below, it will be necessary to add a textual alternative to the indication provided through color:
 
-Lors de la conception de la maquette mobile, il est important d'annoter les éléments nécessitant une alternative textuelle. Le développeur aura ainsi, un moyen d'adapter en fonction de l'environnement cible, une alternative pour donner l'information donnée par la couleur.
+ * Mandatory fields in a form when they are in red
+ * The current page in a navigation menu (change of background color for the current item)
+ * The unavailability of an article indicated by the color of the text
 
-##### Ressources
+When designing the mobile template, it is important to annotate elements requiring a textual alternative. The developer will thus be warned of the need to implement an alternative to color.
 
- * [Critère 3.1 [A] Dans chaque page Web, l'information ne doit pas être donnée uniquement par la couleur. Cette règle est-elle respectée ?](http://references.modernisation.gouv.fr/rgaa/criteres.html#crit-3-1)
- * [Critère 3.2 [A] Dans chaque page Web, l'information ne doit pas être donnée uniquement par la couleur. Cette règle est-elle implémentée de façon pertinente ?](http://references.modernisation.gouv.fr/rgaa/criteres.html#crit-3-2)
+##### Resources
 
-
-#### Contraste
-
-Il est important d'utiliser des contrastes suffisamment élevés sur la maquette mobile. Pour être conforme RGAA 3, un contraste supérieur à 4,5:1 entre le texte et le fond sera requis. C'est une recommandation simplifiée du critère RGAA 3 (Voir la [Note technique](#simplification-des-contrastes-mobile)).
-Lorsque la couleur est utilisée pour informer de la sélection en cours sur un onglet ou un menu, il est nécessaire que les couleurs de fond d'un item sélectionné ou non soient aussi d'un contraste supérieur à 4,5:1.
-
-<span lang="en">Google</span> ajoute dans ses lignes directrices qu'il est préférable d'[utiliser de la transparence](https://www.google.com/design/spec/style/color.html#color-ui-color-application) pour les couleurs de textes noir ou blanc, plutôt que l'utilisation du gris. En effet, <span lang="en">Google</span> considère que le texte se détachera plus facilement en fonction du fond. Néanmoins le calcul de contraste peut se révéler plus ardu. L'outil en ligne [Contrast-Ratio](http://leaverou.github.io/contrast-ratio/#rgba%280%2C%200%2C%200%2C%200.6%29-on-white) permet de calculer le contraste entre un fond et un texte ayant une transparence (dans l'exemple un fond blanc et un texte noir avec une opacité de 0.6 obtiendra un ratio de 5,4:1).
+ * [Criterion 3.1 [A] On each Web page, information must not  be conveyed through color only. Has this rule been followed?](https://disic.github.io/rgaa_referentiel_en/criteria.html#crit-3-2)
+ * [Criterion 3.2 [A] On each Web page, information  must not be conveyed through color only. Has this rule been implemented in a relevant way?](https://disic.github.io/rgaa_referentiel_en/criteria.html#crit-3-2)
 
 
-##### Ressources
+#### Contrast
 
- * <a lang="en" href="https://www.google.com/design/spec/style/color.html">Material design - color</a>
- * <a lang="en" href="https://developer.apple.com/library/ios/documentation/UserExperience/Conceptual/MobileHIG/ColorImagesText.html">iOS Human Interface Guidelines - Color and Typography</a>
+Sufficient contrast must be used in the app design. To be RGAA 3 compliant, a contrast higher than 4.5:1 between text and background will be required. This is a simplified version of the RGAA 3 criteria (See [Technical Note on contrast criteria](#simplification-of-the-contrast-criteria-on-mobile-devices)).
+When the color is used to inform the user about current selection on a tab or menu, the contrast ratio between text and background colors must be higher than 4.5:1, regardless of the item selection status.
 
-
-#### Tailles
-
-Il n'est pas courant de spécifier la taille dans une maquette en millimètres. Néanmoins chaque zone sensible doit avoir une hauteur et une largeur supérieures à 9<abbr title="millimètres">mm</abbr> pour respecter le critère [14.1](https://github.com/DISIC/referentiel-mobile-tactile/blob/master/refentiel-mobile-tactile-liste-criteres.md#141-chaque-zone-sensible-a-t-elle-une-taille-suffisante).
-Le développeur ne pourra pas prendre en compte directement une taille en millimètres au risque d'avoir un problème de performance pour le calcul par <span lang="en">Android</span> et un problème d'<span lang="en">aliasing</span> si la mesure tombe entre 2 pixels (voir exemple ci-dessous).
-
-<img width="380" alt="Illustration de l'effet d'aliasing" src="img/aliasing.png">
-
-Il est nécessaire de prendre en compte la densité de pixels pour déterminer la taille réelle sur le support final.
-
-Pour <span lang="en">Android</span>, la tâche peut se révéler assez complexe au vu du nombre de constructeurs et d'écrans différents. Il est possible de prendre [la grille de Google](https://design.google.com/devices/), cliquer sur un <span lang="en">device</span> pour obtenir les informations de la taille de zone sensible idéale. Il suffit de prendre la taille en densité de pixels pour une mesure de 9mm (exemple pour le mobile <span lang="en">Android One</span> qui sera de 51<abbr title="Density-independent pixels">dp</abbr>). Néanmoins, au vu du nombre important de <span lang="en">devices</span> et de densités de pixels différentes, une taille de zone sensible de 56dp aura quasiment toujours une taille supérieure à 9mm.
-
-Sur <span lang="en">iOS</span>, la solution est plus simple au vu du nombre d’écrans différents. Une taille de 44 points est suffisante pour obtenir au moins 9mm.
-
-Il est parfois compliqué de créer des boutons de 9mm de hauteur suivant la charte graphique. Néanmoins pour rendre accessible l’application, il est possible de faire déborder la taille de la zone sensible autour du bouton, pour obtenir la taille correcte. Il suffit juste d'annoter la maquette pour que le développeur ne fasse pas l’impasse sur cette adaptation.
+In their guidelines for material design, Google recommends to [use opacity](https://material.io/guidelines/style/color.html#color-usability) for black or white text colors, rather than using gray. They consider that the text will be more legible, and propose levels of opacity depending on the background color and expected effect. However, the calculation of contrast ratio may be more difficult when a degree of opacity is applied. The [Contrast-Ratio tool](http://leaverou.github.io/contrast-ratio/#rgba%280%2C%200%2C%200%2C%200.6%29-on-white) allows you to calculate the contrast ratio between a background and a text with an opacity value (in the example a white background and a black text with an opacity of 0.6 will get a ratio of 5.4:1).
 
 
-##### Ressources
+##### Resources
 
-* <a lang="en" href="https://design.google.com/devices/">Google design - Device metrics</a>
-* <a lang="en" href="https://developer.apple.com/library/ios/documentation/UserExperience/Conceptual/MobileHIG/LayoutandAppearance.html#//apple_ref/doc/uid/TP40006556-CH54-SW1">iOS Human Interface Guidelines - Adaptivity and Layout</a>
+ * <a href="https://material.io/guidelines/style/color.html">Material design - color</a>
+ * <a href="https://developer.apple.com/ios/human-interface-guidelines/visual-design/color/">iOS Human Interface Guidelines - Color</a>
 
-#### Marges
 
-Pour rendre la maquette conforme, il est nécessaire d’ajouter des marges entre chaque zone sensible selon [la thématique 14](https://github.com/DISIC/referentiel-mobile-tactile/blob/master/refentiel-mobile-tactile-liste-criteres.md#141-chaque-zone-sensible-a-t-elle-une-taille-suffisante) du RGAA 3. Pour simplifier la démarche, nous vous conseillons d’utiliser une marge d’au moins 8px entre chaque bouton, et d’au moins 1px pour les listes ou onglets dans l’application.
+#### Sizes
 
-Selon <span lang="en">iOS</span> ou <span lang="en">Android</span>, l’utilisation de [diviseur](https://www.google.com/design/spec/components/dividers.html) dans les listes est laissé à l'appréciation du graphiste. Néanmoins, s'il est nécessaire de ne pas en mettre. Il est préférable d'annoter la maquette pour éviter tout oubli de marge entre les items.
+It is not common to specify the size in millimeters in a template. However, each touch target must have a height and width greater than 9 <abbr title="millimeters">mm</abbr> to meet [criterion 14.1](https://github.com/DISIC/referentiel-mobile-tactile/blob/en/mobile-touch-guidelines-criteria.md#141-does-each-touch-target-have-a-sufficient-size).
+The developer will not be able to directly take into account a size in millimeters; it would cause a performance issue with Android, and aliasing will affect measurement (see example below).
 
-##### Ressource
-<a lang="en" href="https://www.google.com/design/spec/components/dividers.html">Material design - Dividers</a>
+<img width="380" alt="Illustration of the aliasing effect" src="img/aliasing.png">
+
+It is necessary to take into account the pixel density to determine the actual size on the end product.
+
+For  Android, the task can be quite complex given the number of different manufacturers and screens. In [Google's device metrics grid](https://material.io/devices/), click a device to get information about the ideal touch size range. To obtain a size of 9 mm, take  the size in pixels (e.g. for the  Android One it will be 51 <abbr title = "Density-independent pixels">dp</abbr>). Nevertheless, given the large number of devices and different pixel densities, as a rule of thumb, a touch size of 56dp will almost always be larger than 9mm.
+
+On  iOS, the solution is simpler given the number of different screens. A size of 44 point is sufficient to get at least 9 mm.
+
+It is sometimes difficult to design buttons with a height of at least 9 mm, in certain interfaces. However, to make the app accessible, it is possible to have a touch target size larger than the visual boundaries of the button. To this end, it will be necessary to annotate the wireframe, to inform the developer of this adaptation.
+
+
+##### Resources
+
+* <a href="https://material.io/devices/">Material design - Device metrics</a>
+* <a href="https://developer.apple.com/ios/human-interface-guidelines/visual-design/layout/">iOS Human Interface Guidelines - Layout</a>
+
+#### Spacing
+
+To design a UI that meets conformance requirements, it is necessary to have sufficient spacing between each touch target, according to [criterion 14.1](https://github.com/DISIC/referentiel-mobile-tactile/blob/en/mobile-touch-guidelines-criteria.md#141-does-each-touch-target-have-a-sufficient-size) of the RGAA 3. To simplify the process, we advise you to use a spacing of at least 8px between each button, and at least 1px for lists items or tabs in the app.
+
+Either in iOS or Android, using [dividers](https://material.io/guidelines/components/dividers.html) in the lists is left to the discretion of the graphic designer. However, if dividers must not be used, it will be necessary to annotate the wireframe to avoid insufficient spacing between items.
+
+##### Resource
+<a href="https://material.io/guidelines/components/dividers.html">Material design - Dividers</a>
 
 #### Orientation
 
-Lors de la création des maquettes, il est important que le contenu soit consultable dans les deux orientations, portrait et paysage. Il ne faut surtout pas restreindre le contenu en fonction de l'orientation de l'écran.
+Content must be available in both portrait and landscape orientations. Restricted access to content due to screen orientation can be a major barrier for some users with disabilities who cannot change the orientation of their device.
 
-##### Ressource
-[Critère 14.7 L'accès au contenu ne doit pas dépendre d'une orientation de l'écran (portrait ou paysage), cette règle est-elle respectée ?](https://github.com/DISIC/referentiel-mobile-tactile/blob/master/refentiel-mobile-tactile-liste-criteres.md#147-laccès-au-contenu-ne-doit-pas-dépendre-dune-orientation-de-lécran-portrait-ou-paysage-cette-règle-est-elle-respectée)
+##### Resource
+[14.7 Access to content should not depend on a screen orientation (portrait or landscape), has this rule been followed?](https://github.com/DISIC/referentiel-mobile-tactile/blob/en/mobile-touch-guidelines-criteria.md#147-access-to-content-should-not-depend-on-a-screen-orientation-portrait-or-landscape-has-this-rule-been-followed)
 
-### Décrire les éléments d'interface
+### Describe interface elements
 
-Lors de la spécification de l’application, les concepteurs doivent définir l'ensemble du vocabulaire nécessaire pour la navigation dans l’application, vocabulaire qui sera utilisé ultérieurement par l'équipe de développement. Il en va de même pour toutes les images, boutons images et icônes.
+When designing the app, designers must define the language used across the app, a vocabulary that will be used later by the development team. The same applies to all alternatives for images, image buttons and icons.
 
-Il est important d'annoter directement la maquette avec les alternatives textuelles sur l'ensemble des images. De plus, chaque abréviation devra être renseignée. Créer un lexique à l’attention du développeur permettra de formaliser chaque abréviation utilisée dans l’application.
-
-
-### Composants riches
-
-Pour réaliser l’application, il est préférable d’utiliser les composants par défaut de la plateforme. Il sera tout de même nécessaire de faire des adaptations d’accessibilité pour certains composants.
-
-Voir la liste des composants incompatibles sous&nbsp;:
- * <a lang="en" href="https://github.com/DISIC/guide-mobile_app_dev_natif/blob/master/api_android/android.md#widgets-incompatibles">Android</a>
- * <a lang="en" href="https://github.com/DISIC/guide-mobile_app_dev_natif/blob/master/api_ios/ios.md#widgets-incompatibles">iOS</a>
-
-Pour le web, il est préférable d’utiliser en priorité des composants simples plutôt que l’<abbr lang="en" title="Application programming interface">API</abbr> <span lang="en">Aria</span>. Pour le mobile certains <span lang="en">patterns Aria</span> ne sont pas encore adaptés aux événements touch, il est important de [vérifier la compatibilité](#compatibilit-des-designs-patterns-aria-avec-le-mobile) lors du choix du composant.
-
-En utilisant des composants natifs, l’application en sera plus robuste et plus simple à maintenir. Néanmoins, il est parfois nécessaire d’utiliser des composants plus complexes pour les besoins d’une application. Si l’on souhaite utiliser des vues personnalisées dans l’application, il est important de spécifier leur comportement au lecteur d’écran.
-
-Il faut définir&nbsp;:
- * Le nom, le rôle, la valeur, l'état ; pour permettre au développeur d'adapter l'accessibilité à l'<span lang="en">API</span> selon l'environnement cible.
- * Le texte après le changement d’état.
- * La navigation au clavier.
- * Les sous zones focusables si nécessaire.
- * Les alternatives aux gestes complexes si nécessaire.
+The wireframes must be annotated directly with the textual alternatives on all the images. In addition, each abbreviation must be developed. Creating a lexicon for the developer will help formalize each abbreviation used in the app.
 
 
-##### Ressource
+### Rich interface components
 
-[Critère 7.1 [A] Chaque script est-il, si nécessaire, compatible avec les technologies d'assistance ?](http://references.modernisation.gouv.fr/rgaa/criteres.html#crit-7-1)
+To implement the app, it is preferable to use the default components of the platform. It will still be necessary to make adaptations for accessibility for certain components.
 
-### Formulaires
+See the lists of incompatible components under:
 
-La création de formulaire dans une application mobile doit suivre la thématique 11 du RGAA 3.
-Il y a quelques précautions à prendre pour le mobile et certaines erreurs à éviter lors de la conception de l'application.
+ * <a href="https://github.com/DISIC/guide-mobile_app_dev_natif/blob/master/api_android/android.md#widgets-incompatibles">Android</a>
+ * <a href="https://github.com/DISIC/guide-mobile_app_dev_natif/blob/master/api_ios/ios.md#widgets-incompatible">iOS</a>
 
-#### Les étiquettes de champ de formulaire
+For web apps, it is preferable to use simple components rather than those of the ARIA <abbr title = "Application programming interface"> API</abbr>. Some of the  ARIA design patterns are not yet adapted to touch events, it is important to [check compatibility](#compatibility-of-aria-design-patterns-with-mobile-platforms) when choosing the component.
 
-L'étiquette doit toujours être visible même si la saisie est en cours. Il ne faut pas utiliser les <span lang="en">placeholders</span> web ou <span lang="en">iOS</span> ou encore les <span lang="en">hints</span> sous <span lang="en">Android</span> pour remplacer l'utilisation d'une étiquette. En effet, un <span lang="en">placeholder</span> ne sera plus visible suite à la saisie d'un utilisateur, ne donnant plus aucune information sur la nature de la saisie.
+By using native components, the app will be more robust and easier to maintain. However, it may be necessary to use more complex components for an app. If you want to use custom views in the app, it is important to specify their behavior to the screen reader.
 
+You need to define:
 
-#### Les types de champs de saisie
-
-Pour chaque champ de saisie, il est nécessaire de spécifier le type en annotant la maquette avec l’un des types suivants&nbsp;:
- * texte
- * recherche
- * téléphone
- * url
- * email
- * mot de passe
- * date
- * heure
- * nombre
- * couleur
- * fichier et le type
-
-Le développeur pourra adapter en fonction de la cible (<span lang="en">Android</span>, <span lang="en">iOS</span>, HTML) le type de champ de saisie.
-De cette manière, un clavier numérique adapté sera proposé à l’utilisateur afin d’optimiser sa saisie.
-
-#### Ressource
-
- * [Critère 14.8 Pour chaque champ de saisie, le format de saisie attendu est-il, si possible, associé à un type de saisie pertinent&nbsp;?](https://github.com/DISIC/referentiel-mobile-tactile/blob/master/refentiel-mobile-tactile-liste-criteres.md#148-pour-chaque-champ-de-saisie-le-format-de-saisie-attendu-est-il-si-possible-associé-à-un-type-de-saisie-pertinent)
-
-### Capteur et alternative
-
-Pour chaque capteur, il est important de préciser une alternative. Certains utilisateurs n’auront pas la capacité d'approcher le mobile du capteur <span lang="en">NFC</span>, ou de prendre en photo le <span lang="en">QRCode</span>, ou encore d’utiliser correctement l’accéléromètre.
-
-Il est important de trouver une alternative en utilisant par exemple un champ de saisie avec un code pour le <span lang="en">NFC</span> ou le <span lang="en">QRCode</span>, ainsi l'utilisateur n'ayant pas la capacité de flasher le code pourra entrer un code permettant d'accéder au contenu. Pour les capteurs de pression sur l’écran, un menu alternatif doit permettre d'accéder aux mêmes fonctionnalités.
+ * Name, role, value, state, so that the developer can implement the accessibility adaptations relevant to the API of the target environment;
+ * The text after the change of state;
+ * Keyboard navigation;
+ * Focusable sub-areas if necessary;
+ * Alternatives to complex gestures if necessary.
 
 
-### Geste et alternative
+##### Resource
 
-Les surfaces tactiles introduisent de nouvelles possibilités de navigation et d'interaction avec une application grâce au geste.
-Lors de la spécification de l'application, 2 critères sont importants à prendre en compte pour rendre l'application mobile accessible.
+[Criterion 7.1 [A] Does each script support assistive technologies, if necessary?](https://disic.github.io/rgaa_referentiel_en/criteria.html#crit-7-1)
 
-Le critère [14.4](https://github.com/DISIC/referentiel-mobile-tactile/blob/master/refentiel-mobile-tactile-liste-criteres.md#144-chaque-interaction-gestuelle-complexe-a-t-elle-une-alternative) implique d'ajouter une alternative non-gestuelle ou une gestuelle simplifiée sur les gestes complexes. Pour simplifier, on peut étendre cette pratique à l'ensemble des gestes. La façon la plus simple est en général d'ajouter une action alternative utilisant le tap (*touch* en anglais) via un bouton ou un menu secondaire.
+### Forms
+
+The design of forms in a mobile app must follow the criteria of [category 11](https://disic.github.io/rgaa_referentiel_en/criteria.html#formulaire) of the RGAA 3.
+There are some precautions to take for the mobile and some errors to avoid when designing the app.
+
+#### Form Field Labels
+
+The label must always be visible even if input is in progress. The placeholders for web or iOS apps, or hints for Android, are no replacement for a label. Indeed, a placeholder will no longer be visible after user input, giving no more information about the expected input.
 
 
-Pour respecter le critère [14.6](https://github.com/DISIC/referentiel-mobile-tactile/blob/master/refentiel-mobile-tactile-liste-criteres.md#146-les-interactions-gestuelles-impliquant-un-changement-dorientation-de-lécran-basculement-rotation-secouement-ont-elles-une-alternative-hors-cas-particulier), il est nécessaire d'ajouter une alternative pour chaque geste impliquant un changement d'orientation de l'écran (basculement, rotation, secouement…). On peut citer notamment la ligne directrice d'<span lang="en">Apple</span>, permettant à l'utilisateur d'initier une annulation d'opération en secouant l'appareil.
+#### Types of input fields
 
-Dans l'exemple ci-dessous, le geste permet à l'utilisateur d'annuler ou rétablir une saisie en secouant l'appareil. Néanmois il n'y a pas d'alternative, un bouton "Annuler" ou "Rétablir" dans la barre du haut aurait été une alternative acceptable pour rendre l'application accessible.
+For each input field, it is necessary to specify the type by annotating the wireframe with one of the following types:
 
-<img src="img/undo-redo.PNG" alt="Impression d'écran d'un iPad dans l'application Note avec une modal de confirmation pour rétablir la saisie" height="400" width="300">
+ * Text
+ * Search
+ * Phone
+ * Url
+ * E-mail
+ * Password
+ * Date
+ * Time
+ * Number
+ * Color
+ * File, and type of file
 
-#### Ressources
- * [Liste des critères RGAA 3, spécifiques aux plateformes mobiles/tactiles](https://github.com/DISIC/referentiel-mobile-tactile/blob/master/refentiel-mobile-tactile-liste-criteres.md)
- * <a lang="en" href="https://developer.apple.com/library/ios/documentation/UserExperience/Conceptual/MobileHIG/UndoRedo.html#//apple_ref/doc/uid/TP40006556-CH47-SW1">iOS Human Interface Guidelines - Undo and Redo</a>
- * <a lang="en" href="https://design.google.com/articles/design-from-ios-to-android/#gestures">Design from iOS to Android (and Back Again) - Gestures</a>
- * <a lang="en" href="https://www.google.com/design/spec/patterns/gestures.html">Material design - Gestures</a>
+The developer will then be able to choose the type of input field most adapted to the target (Android, iOS, or HTML).
+Setting the appropriate field type will allow the OS to display the relevant on-screen keyboard, making the input easier for the user.
 
-## Notes techniques
+#### Resource
 
-### Compatibilité des design patterns Aria avec le mobile
+ * [14.8 For each input field, is the expected input format, if possible, associated with a relevant input type?](https://github.com/DISIC/referentiel-mobile-tactile/blob/en/mobile-touch-guidelines-criteria.md#148-for-each-input-field-is-the-expected-input-format-if-possible-associated-with-a-relevant-input-type)
 
-Lors de la conception d'une application mobile web ou d'une application hybride, si l'on veut que l'application mobile soit accessible, il est impératif de vérifier la compatibilité du <span lang="en">pattern Aria</span> avec le mobile. En effet, certains <span lang="en">patterns Aria</span> nécessitent une utilisation du clavier qui n'a pas d'équivalent pour les interfaces tactiles. Par exemple, la navigation dans un treeview fonctionne majoritairement avec les flèches du clavier.
+### Sensor and alternative
 
-Il existe une [anomalie dans <abbr title="Web Accessibility Initiative - Accessible Rich Internet Applications">WAI-ARIA</abbr> (en anglais)](https://github.com/w3c/aria/issues/60) qui est actuellement en cours (12/2015).
+For each sensor, it is important to specify an alternative. Some users will not have the ability to put their device close enough to a NFC sensor, or take a picture of a QRCode, or use the accelerometers efficiently.
 
-Pour choisir le <span lang="en">pattern Aria</span>, il est nécessaire de vérifier sa compatibilité, suivant l'OS ciblé, en vérifiant dans [la liste (en anglais)](https://docs.google.com/spreadsheets/d/1gN9oRZPdrJxLDNtT6nVO4fn7E7sn1061L9Xl3__slZ4/edit). Par exemple le <span lang="en">design pattern Menu</span> et <span lang="en">Slider</span> n'est pour le moment pas compatible, tandis que le <span lang="en">Tab Panel</span> peut être implémenté correctement.
+An alternative must be found: for example, providing the option to input a code into a field, instead of making use of the NFC sensor, or of the camera to flash a QRCode. For pressure sensors on touch screen, an alternative menu must allow access to the same functionality.
 
-### Simplification des contrastes mobile
 
-Le critère [3.3](http://references.modernisation.gouv.fr/rgaa/criteres.html#crit-3-3) permet d'utiliser 2 types de contraste en fonction de la taille de police et de l'effet de graisse. En mobile, il y a pas vraiment d'équivalent en fonction de la densité de pixel, de l'OS… On peut donc simplifier en prenant un contraste d'au moins 4,5:1 pour l'ensemble des textes.
+### Gesture and alternative
 
-## Ressources et références
- * <a lang="en" href="https://www.google.com/design/spec/material-design/introduction.html">Material design</a>
- * <a lang="en" href="https://developer.apple.com/library/ios/documentation/UserExperience/Conceptual/MobileHIG/index.html">iOS Human Interface Guidelines</a>
- * <a lang="en" href="http://developer.android.com/design/patterns/accessibility.html">Material design - Accessibility</a>
- * <a lang="en" href="https://design.google.com/articles/design-from-ios-to-android">Design from iOS to Android (and Back Again)</a>
- * <a lang="en" href="http://webdesign.tutsplus.com/articles/a-tale-of-two-platforms-designing-for-both-android-and-ios--cms-23616">A Tale of Two Platforms: Designing for Both Android and iOS</a>
- * <a lang="en" href="https://developer.apple.com/app-store/review/rejections/">iOS - Common App Rejections</a>
- * <a lang="en" href="https://developer.apple.com/app-store/review/guidelines/#user-interface">App Store Review Guidelines</a>
- * <a lang="en" href="http://www.funka.com/en/our-assignments/research-projects/archive---research-projects/mobile-accessibility-guidelines/">Funka - Mobile accessibility guidelines</a>
+Touch surfaces introduce new navigation possibilities of navigation and interaction with an app, thanks to gestures.
+When specifying the app, 2 criteria must take into account to make the mobile app accessible.
 
-## Guides connexes
+The [criterion 14.4](https://github.com/DISIC/referentiel-mobile-tactile/blob/en/mobile-touch-guidelines-criteria.md#144-does-each-complex-gesture-based-interaction-have-an-alternative) involves adding a non-gestural alternative, or simplified gestures, to complex gestures. For more simplicity, this practice can be extended to all gestures. The easiest way is usually to add an alternative action using only single tap interactions, via a button or a secondary menu.
 
-Les guides suivants peuvent être consultés en complément&nbsp;:
 
-* [Guide d'audit d'applications mobiles](https://github.com/DISIC/guide-mobile_app_audit)
-* [Guide de conception d'applications mobiles accessibles](https://github.com/DISIC/guide-mobile_app_conception)
-* [Guide de développement d'applications mobiles accessibles avec les API Android et iOS](https://github.com/DISIC/guide-mobile_app_dev_natif)
-* [Guide de développement d'applications mobiles hybrides accessibles avec Ionic et OnsenUI](https://github.com/DISIC/guide-mobile_app_dev_hybride)
+To meet [criterion 14.6](https://github.com/DISIC/referentiel-mobile-tactile/blob/en/mobile-touch-guidelines-criteria.md#146-do-gesture-based-interactions-involving-a-change-in-screen-orientation-tilting-rotation-shaking-have-an-alternative-except-in-particular-cases), it is necessary to add an alternative for each gesture involving a change of orientation (tilting, rotation, shaking...).
+
+An example of such interaction can be found in Apple's guidelines: the user can undo an operation by shaking the device.
+In the example below, the gesture allows the user to undo the last input by shaking the device. However, there is no alternative means to do this; an "Undo" button in the top bar would have been an acceptable alternative, to make the app accessible.
+
+<img src="img/cancel-undo.PNG" alt="Screenshot of an iPad in the Notes app, with a modal to confirm undoing" height="1200" width="900">
+
+#### Resources
+
+ * [List of criteria RGAA&nbsp;3, specific to mobile/tactile platforms](https://github.com/DISIC/referentiel-mobile-tactile/blob/en/mobile-touch-guidelines-criteria.md)
+ * <a href="https://developer.apple.com/ios/human-interface-guidelines/interaction/undo-and-redo/">iOS Human Interface Guidelines - Undo and Redo</a>
+ * <a href="https://design.google.com/articles/design-from-ios-to-android/"> Design from iOS to Android (and Back Again</a> - Gestures section
+ * <a href="https://material.io/guidelines/patterns/gestures.html">Material design - Gestures</a>
+
+## Technical Notes
+
+### Compatibility of ARIA design patterns with mobile platforms
+
+When designing a mobile web app or a hybrid app, if the app is to be accessible, it is imperative to check the compatibility of the ARIA design patterns with the device. Indeed, some  ARIA design patterns include keyboard interactions that have no equivalent with touch interfaces. For example, browsing in a treeview works mostly with the arrows keys on the keyboard.
+
+There is a [gap in the ARIA specification](https://www.w3.org/TR/aria-in-html/#aria-touch) that is currently underway (as of April 2017).
+
+Before selecting an  ARIA design pattern, it is necessary to verify its compatibility, depending on the target OS, by checking this [gap analysis (Google Sheets)](https://docs.google.com/spreadsheets/d/1gN9oRZPdrJxLDNtT6nVO4fn7E7sn1061L9Xl3__slZ4/edit). For example,  the Menu and  Slider design patterns  are currently not compatible, while Tab Panel can be made accessible.
+
+### Simplification of the contrast criteria on mobile devices
+
+The [criterion 3.3](https://disic.github.io/rgaa_referentiel_en/criteria.html#crit-3-3) sets 2 contrast ratios thresholds, depending on the font size and weight. On mobile devices, due to high variability in pixel densities and OS, this distinction is impractical. Therefore, the criterion is simplified to define 4.5:1 as the minimum contrast ratio for all texts.
+
+## Resources and References
+
+ * <a href="https://material.io/guidelines/material-design/introduction.html">Material design</a>
+ * <a href="https://developer.apple.com/ios/human-interface-guidelines/overview/design-principles/">iOS Human Interface Guidelines</a>
+ * <a href="https://material.io/guidelines/usability/accessibility.html">Material design - Accessibility</a>
+ * <a href="https://design.google.com/articles/design-from-ios-to-android/">Design from iOS to Android (and Back Again)</a>
+ * <a href="https://webdesign.tutsplus.com/articles/a-tale-of-two-platforms-designing-for-both-android-and-ios--cms-23616" >A Tale of Two Platforms: Designing for Both Android and iOS</a>
+ * <a href="https://developer.apple.com/app-store/review/rejections/">iOS - Common App Rejections</a>
+ * <a href="https://developer.apple.com/app-store/review/guidelines/#design">App Store Review Guidelines - Design</a>
+ * <a href="http://www.funka.com/contentassets/9131835638b640cf96baf2ef62a2fba4/guidelines_for_the_development_of_accessible_mobile_interfaces.pdf">Funka's Guidelines for the development of accessible mobile interfaces (PDF, 270 kb)</a>
+
+## Related documents
+
+The following guides can be consulted in addition:
+
+* [Mobile app audit guide](https://github.com/DISIC/guide-mobile_app_audit/tree/english)
+* [Accessible mobile app development guides with Android and iOS APIs](https://github.com/DISIC/guide-mobile_app_dev_natif)
+* [Accessible hybrid mobile app development guide with Ionic and OnsenUI](https://github.com/DISIC/guide-mobile_app_dev_hybride)
 
 
 ## Licence
-Ce document est la propriété du Secrétariat général à la modernisation de l'action publique français (<abbr title="Secrétariat général pour la modernisation de l'action publique">SGMAP</abbr>). Il est placé sous la [licence ouverte 1.0 ou ultérieure](https://www.etalab.gouv.fr/licence-ouverte-open-licence), équivalente à une licence <i lang="en">Creative Commons BY</i>. Pour indiquer la paternité, ajouter un lien vers la version originale du document disponible sur le [compte <span lang="en">Github</span> de la <abbr title="Direction interministérielle du numérique et des systèmes d’information et de communication">DInSIC</abbr>](https://github.com/DISIC).
-
+This document is the property of the <span lang="fr">Secrétariat général à la modernisation de l'action publique</span> (SGMAP). It is placed under [Open Licence 1.0 or later (PDF, 541 kb)](http://ddata.over-blog.com/xxxyyy/4/37/99/26/licence/Licence-Ouverte-Open-Licence-ENG.pdf), equivalent to a Creative Commons BY licence. To indicate authorship, add a link to the original version of the document available on the [DINSIC's GitHub account](https://github.com/DISIC).
 
 
 
