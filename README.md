@@ -301,7 +301,6 @@ Le critère [3.3](http://references.modernisation.gouv.fr/rgaa/criteres.html#cri
 Les guides suivants peuvent être consultés en complément&nbsp;:
 
 * [Guide d'audit d'applications mobiles](https://github.com/DISIC/guide-mobile_app_audit)
-* [Guide de conception d'applications mobiles accessibles](https://github.com/DISIC/guide-mobile_app_conception)
 * [Guide de développement d'applications mobiles accessibles avec les API Android et iOS](https://github.com/DISIC/guide-mobile_app_dev_natif)
 * [Guide de développement d'applications mobiles hybrides accessibles avec Ionic et OnsenUI](https://github.com/DISIC/guide-mobile_app_dev_hybride)
 
